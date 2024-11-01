@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      redball_0: 17435418927084412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

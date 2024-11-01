@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\CamaraFollow.cs" />
+    <Compile Include="Assets\Script\Instrucciones.cs" />
     <Compile Include="Assets\Script\PlayerRedBall.cs" />
     <Compile Include="Assets\Script\LevelManager.cs" />
   </ItemGroup>
