@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target; // El objeto que la cámara va a seguir (tu personaje)
-    public Vector3 offset;   // La diferencia en posición entre la cámara y el personaje
+    public Transform target; // Referencia al transform del RedBall
+    public float smoothSpeed = 0.125f; // Velocidad de suavizado
+    public Vector3 offset; // Desplazamiento de la cámara
 
-    void Update()
+    void LateUpdate()
     {
         if (target != null)
         {
-            // Actualiza la posición de la cámara para que siga al personaje con el offset
-            transform.position = target.position + offset;
+            // Solo actualizar la posición en el eje X
+            Vector3 desiredPosition = new Vector3(target.position.x + offset.x, transform.position.y, transform.position.z);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            transform.position = smoothedPosition;
         }
     }
 }

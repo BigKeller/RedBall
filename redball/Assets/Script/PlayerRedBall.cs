@@ -6,12 +6,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     private bool isGrounded;
     private Rigidbody2D rb;
-    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,16 +17,6 @@ public class PlayerMovement : MonoBehaviour
         // Movimiento horizontal
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-
-        // Actualiza la animación de movimiento
-        if (Mathf.Abs(moveInput) > 0)
-        {
-            animator.SetBool("IsMoving", true); // Activa la animación de giro
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false); // Detiene la animación
-        }
 
         // Salto
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
