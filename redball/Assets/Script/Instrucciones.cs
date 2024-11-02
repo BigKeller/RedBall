@@ -3,14 +3,15 @@ using UnityEngine.UI;
 
 public class UpdateInstruction : MonoBehaviour
 {
-    public Text instructionText; // Referencia al componente Text
+    public Text instructionText;
     private bool pressedA = false;
     private bool pressedD = false;
-    private bool spaceInstructionShown = false; // Verifica si la instrucción de espacio ya se mostró
+    private bool spaceInstructionShown = false;
+    private float timer = 0f;
+    private float displayTime = 3f; 
 
     void Update()
     {
-        // Comprobar si las teclas "A" y "D" han sido presionadas
         if (Input.GetKeyDown(KeyCode.A))
         {
             pressedA = true;
@@ -21,17 +22,25 @@ public class UpdateInstruction : MonoBehaviour
             pressedD = true;
         }
 
-        // Si ambas teclas han sido presionadas, actualizar el texto
         if (pressedA && pressedD && !spaceInstructionShown)
         {
             instructionText.text = "Presiona la barra espaciadora para saltar";
             spaceInstructionShown = true;
+            timer = displayTime;
         }
-
-        // Comprobar si se ha presionado la barra espaciadora después de mostrar la instrucción
-        if (spaceInstructionShown && Input.GetKeyDown(KeyCode.Space))
+         if (spaceInstructionShown && Input.GetKeyDown(KeyCode.Space))
         {
             instructionText.text = "Felicidades ya sabes cómo moverte por este juego";
+            timer = displayTime;
+        }
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                instructionText.gameObject.SetActive(false);
+            }
         }
     }
 }
